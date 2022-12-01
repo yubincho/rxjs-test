@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Observable.combineLatest.switchMap.map example</title>
+  </head>
+  <body>
+    <h1>Observable.combineLatest.switchMap.map 예제</h1>
+    <p>(index.js를 참고해 주세요.)</p> 
+    <br />
+    <p>
+      실제로는 api에 대한 응답은 요청받은쪽에서 보내주는데로 받지만 이
+      예제에서는 버튼을 누르는 순간을 응답이 온 순간으로 판단합니다 
+    </p>
+    <button class="btn1">API1 응답 처리</button><br />
+    <button class="btn2">API2 응답 처리</button><br />
+    <button class="btn3">API3 응답 처리</button>
+    <br />
+    <p>
+      1,2,3 어떤 응답 처리를 먼저 하든 상관없이 세개 응답이 모두 왔을때
+      index.js의 94번 줄이 실행됩니다
+    </p>
+    ----------------------------------------------------------------------------------------------------------------
+    <p style="color: red">↓ Console도 같이 확인해보세요!</p>
+    <button class="get-user-info-btn" disabled="true">
+      getUserInfo 응답 처리
+    </button>
+    <div class="data-container">
+      <h3>userInfo</h3>
+      <div class="response-data-container"></div>
+    </div>
+    <p>=== 흐름 설명(index.js참고) ================================</p>
+    API 1,2,3 을 통해얻은 값으로 getUserInfo API 요청<br />
+    getUserInfo는 받은 params의 brokenKey를 조합해서 password생성하고,<br />
+    users 조회 후 생성한password와 일치하는 user찾고, userInfo 생성해서
+    리턴해준다.<br />
+    userInfo의 age를 20으로 변경 하여 데이터 발행.<br />
+    ==================================================<br />
+    <br />
+    <p>
+      switchMap : 비동기 코드 완료 후 처리해야할 또 다른 비동기 사용시. (이
+      예제에서는 3개의 API 호출해서 받은 값을 다른API요청(getUserInfo)의
+      params에 필요한것으로 가정)
+    </p>
+    <p>map : 데이터 발행 전 실행되어야할 코드.</p>
+    <script type="text/javascript" src="/js/rx.js"></script> 
+  </body>
+  <!-- <script type="application/octet-stream" src="/script/rx.js"></script>  -->
+  <!-- <script src="localhost:port/js/rx.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.1.0/rx.all.min.js"></script> -->
+
+</html>
